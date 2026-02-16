@@ -1,4 +1,5 @@
 using AspnetIdentityUserValidation.Data;
+using AspnetIdentityUserValidation.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +22,8 @@ builder
         options.Password.RequireUppercase = false;
         options.Password.RequiredLength = 6;
     })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddUserValidator<PlusAddressingValidator>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
